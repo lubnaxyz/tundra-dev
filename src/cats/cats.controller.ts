@@ -5,6 +5,7 @@ import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './interfaces/cat.interface';
+import { Cats } from './cats.entity';
 
 @UseGuards(RolesGuard)
 @Controller('cats')
@@ -14,13 +15,19 @@ export class CatsController {
   @Post()
   @Roles(['admin'])
   async create(@Body() createCatDto: CreateCatDto) {
-    this.catsService.create(createCatDto);
-  }
+    //this.catsService.create(createCatDto);
+  } //TODO
 
   @Get()
   async findAll(): Promise<Cat[]> {
     return this.catsService.findAll();
   }
+
+  //mine
+  @Get()
+    index(): Promise<Cat[]> {
+      return this.catsService.findAll();
+    }    
 
   @Get(':id')
   findOne(
